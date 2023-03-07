@@ -8,6 +8,19 @@
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
 <project name="NumerosPrimos" default="default" basedir=".">
+    <property name="junit.dir" value="C:/path/to/junit"/>
+    <path id="classpath">
+        <pathelement location="${junit.dir}/junit.jar"/>
+        <!-- Add other classpath elements as needed -->
+    </path>
+    <target name="test">
+        <junit fork="yes" printsummary="on">
+            <classpath refid="classpath"/>
+            <classpath>
+                <pathelement location="path/to/junit.jar"/>
+            </classpath>    
+        </junit>
+    </target>
     <description>Builds, tests, and runs the project NumerosPrimos.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
