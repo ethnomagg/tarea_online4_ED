@@ -17,18 +17,22 @@ public class CribaEratostenesTest {
 
     @BeforeAll
     public static void setUpClass() {
+        // Código de configuración global antes de ejecutar los tests
     }
 
     @AfterAll
     public static void tearDownClass() {
+        // Código de limpieza global después de ejecutar los tests
     }
 
     @BeforeEach
     public void setUp() {
+        // Código de configuración específico antes de cada test
     }
 
     @AfterEach
     public void tearDown() {
+        // Código de limpieza específico después de cada test
     }
 
     @Test
