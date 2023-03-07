@@ -16,9 +16,7 @@
     <target name="test">
         <junit fork="yes" printsummary="on">
             <classpath refid="classpath"/>
-            <classpath>
-                <pathelement location="path/to/junit.jar"/>
-            </classpath>    
+            <!-- Specify the test classes to run -->
         </junit>
     </target>
     <description>Builds, tests, and runs the project NumerosPrimos.</description>
