@@ -23,57 +23,56 @@ package numerosprimos;
 public class CribaEratostenes {
 
     /**
-     * Generar números primos de 1 a max
+     * Genera un array con todos los números primos desde 2 hasta max.
      *
-     * @param max es el valor máximo
-     * @return Vector de números primos
+     * @param max el valor máximo hasta el cual se buscarán los números primos.
+     * @return un array de enteros con todos los números primos encontrados.
      */
     public static int[] generarPrimos(int max) {
-        int i, j;
-        if (max >= 2) {
-
-            // Declaraciones
-            int dim = max + 1; // Tamaño del array
-            boolean[] esPrimo = new boolean[dim];
-
-            // Inicializar el array
-            for (i = 0; i < dim; i++) {
-                esPrimo[i] = true;
-            }
-
-            // Eliminar el 0 y el 1, que no son primos
-            esPrimo[0] = esPrimo[1] = false;
-
-            // Criba
-            for (i = 2; i < Math.sqrt(dim) + 1; i++) {
-                if (esPrimo[i]) {
-                    // Eliminar los múltiplos de i
-                    for (j = 2 * i; j < dim; j += i) {
-                        esPrimo[j] = false;
-                    }
-                }
-            }
-
-            // ¿Cuántos primos hay?
-            int cuenta = 0;
-            for (i = 0; i < dim; i++) {
-                if (esPrimo[i]) {
-                    cuenta++;
-                }
-            }
-            // Rellenar el vector de números primos
-            int[] primos = new int[cuenta];
-            for (i = 0, j = 0; i < dim; i++) {
-                if (esPrimo[i]) {
-                    primos[j++] = i;
-                }
-            }
-
-            return primos;
-
-        } else { // max < 2
-
-            return new int[0]; // Vector vacío
+        // Si el máximo es menor a 2, no hay primos que generar, devolver un array vacío
+        if (max < 2) {
+            return new int[0];
         }
+
+        // Inicializar un array de booleanos para marcar los números primos
+        boolean[] esPrimo = new boolean[max + 1];
+
+        // Inicializar todos los números desde 2 hasta max como primos
+        for (int i = 2; i <= max; i++) {
+            esPrimo[i] = true;
+        }
+
+        // Marcar los números compuestos como no primos
+        for (int i = 2; i <= Math.sqrt(max); i++) {
+            if (esPrimo[i]) {
+                // Si i es primo, marcar todos los múltiplos de i como no primos
+                for (int j = i * i; j <= max; j += i) {
+                    esPrimo[j] = false;
+                }
+            }
+        }
+
+        // Contar la cantidad de números primos para inicializar el array que los almacenará
+        int cuentaPrimos = 0;
+        for (boolean b : esPrimo) {
+            if (b) {
+                cuentaPrimos++;
+            }
+        }
+
+        // Inicializar el array que almacenará los números primos
+        int[] primos = new int[cuentaPrimos];
+
+        // Llenar el array con los números primos encontrados
+        int indicePrimos = 0;
+        for (int i = 2; i <= max; i++) {
+            if (esPrimo[i]) {
+                primos[indicePrimos++] = i;
+            }
+        }
+
+        // Devolver el array de números primos
+        return primos;
     }
+
 }
